@@ -1,6 +1,6 @@
 # Flight Delay Intelligence
 
-ADSP 32030 Scalable Data Systems, final project (Olivia Yang).
+ADSP 32030 Scalable Data Systems, final project by Olivia Yang.
 
 ## Problem
 
@@ -13,7 +13,7 @@ Business questions
 
 **Definitions.** *Chain:* flights of one `Tail_Number` ordered by UTC departure; a flight is linked to the previous one if the previous destination equals this origin and the ground time is 0-720 min. *Inherited delay* = max(0, previous arrival delay - max(0, scheduled turnaround - 30 min)). *Cascade:* a chain of 2+ flights whose first flight departs 15+ min late. *Bad weather* = severe weather code, or visibility < 5 km, or precipitation >= 2.5 mm/h at the origin in the scheduled departure hour.
 
-## Data (big-data rule)
+## Data
 
 | Source | Size | Type |
 |---|---|---|
@@ -70,7 +70,7 @@ flowchart LR
 | **MongoDB Atlas** (+ Atlas Search) | 05: gold tables, text search over airports and cascades |
 | **Claude via MCP** | 06 + `skills.md` + `claude_mcp_log.md`: read-only questions answered by Claude over the MongoDB MCP server, checked against SQL |
 | **Streamlit** | `dashboard/app.py` |
-| DuckDB | independent SQL checks of the Spark results (02, 06) |
+| **DuckDB** | independent SQL checks of the Spark results (02, 06) |
 
 Medallion layers: **bronze** = raw files converted to Parquet (or raw XML); **silver** = cleaned and joined (`flights_utc`, `weather_hourly`, `airport_tz`, `flight_chains`, `flights_features`, live events); **gold** = small analysis tables served to Atlas and the dashboard (`cascades`, `summary_airport_hour`, `live_status`).
 
