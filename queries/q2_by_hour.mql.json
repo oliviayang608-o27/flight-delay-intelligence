@@ -1,0 +1,26 @@
+{
+  "question": "How many cascades start in each local hour?",
+  "collection": "summary_airport_hour",
+  "pipeline": [
+    {
+      "$group": {
+        "_id": "$local_hour",
+        "cascades": {
+          "$sum": "$cascades"
+        }
+      }
+    },
+    {
+      "$sort": {
+        "_id": 1
+      }
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "local_hour": "$_id",
+        "cascades": 1
+      }
+    }
+  ]
+}

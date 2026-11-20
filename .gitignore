@@ -1,0 +1,13 @@
+# Data lives outside the repo; never commit it or credentials
+data/
+*.parquet
+*.zip
+*.csv
+.env
+
+.streamlit/secrets.toml
+dashboard/.streamlit/secrets.toml
+__pycache__/
+*.ipynb_checkpoints
+.DS_Store
+.Rhistory

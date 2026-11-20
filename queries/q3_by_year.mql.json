@@ -1,0 +1,18 @@
+{
+  "question": "How many cascades per year?",
+  "collection": "by_year",
+  "pipeline": [
+    {
+      "$project": {
+        "_id": 0,
+        "Year": 1,
+        "cascades": 1
+      }
+    },
+    {
+      "$sort": {
+        "Year": 1
+      }
+    }
+  ]
+}

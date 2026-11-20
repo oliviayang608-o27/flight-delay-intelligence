@@ -1,0 +1,34 @@
+{
+  "question": "How many cascades in total, and what is their average length?",
+  "collection": "summary_airport_hour",
+  "pipeline": [
+    {
+      "$group": {
+        "_id": null,
+        "cascades": {
+          "$sum": "$cascades"
+        },
+        "weighted_len": {
+          "$sum": {
+            "$multiply": [
+              "$avg_chain_len",
+              "$cascades"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "cascades": 1,
+        "avg_chain_len": {
+          "$divide": [
+            "$weighted_len",
+            "$cascades"
+          ]
+        }
+      }
+    }
+  ]
+}

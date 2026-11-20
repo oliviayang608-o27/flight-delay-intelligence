@@ -1,0 +1,27 @@
+{
+  "question": "At DFW, which 3 local hours start the most cascades?",
+  "collection": "summary_airport_hour",
+  "pipeline": [
+    {
+      "$match": {
+        "airport": "DFW"
+      }
+    },
+    {
+      "$sort": {
+        "cascades": -1,
+        "local_hour": 1
+      }
+    },
+    {
+      "$limit": 3
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "local_hour": 1,
+        "cascades": 1
+      }
+    }
+  ]
+}

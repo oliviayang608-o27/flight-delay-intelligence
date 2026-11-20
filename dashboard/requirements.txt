@@ -1,0 +1,4 @@
+streamlit>=1.50
+pymongo[srv]>=4.7
+pandas
+altair

@@ -1,0 +1,30 @@
+{
+  "question": "Which 10 airports start the most cascades?",
+  "collection": "summary_airport_hour",
+  "pipeline": [
+    {
+      "$group": {
+        "_id": "$airport",
+        "cascades": {
+          "$sum": "$cascades"
+        }
+      }
+    },
+    {
+      "$sort": {
+        "cascades": -1,
+        "_id": 1
+      }
+    },
+    {
+      "$limit": 10
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "airport": "$_id",
+        "cascades": 1
+      }
+    }
+  ]
+}

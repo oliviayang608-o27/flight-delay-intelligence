@@ -1,0 +1,10 @@
+pyspark>=3.5
+duckdb
+pandas
+pyarrow
+matplotlib
+pymongo[srv]
+requests
+jupyter
+streamlit>=1.50
+altair
